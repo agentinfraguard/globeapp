@@ -2,6 +2,25 @@
 
 var nodemailer = require("nodemailer");
 
+// mailTransporter credentials for GMAIL and AWS
+
+/*var mailTransporter = nodemailer.createTransport({
+ service: 'gmail',
+ auth: {
+        user: 'infraguardmail@gmail.com',
+        pass: 'Infr@Gu@rd'
+    }
+});*/
+
+/*var mailTransporter = nodemailer.createTransport({
+        host: "email-smtp.us-east-1.amazonaws.com",
+        port:465,
+        auth: {
+            user: "AKIAJF5TWSLFHRDRLAFQ",
+            pass: "AiZuYJqpWHHv1baeYIGV6GSqDcGNUvVf6dwpSCiVr4sA"
+        }
+    });*/
+
 module.exports = function(app){
 
 app.post("/mailUserCredentialsUrl", function(req, res){
@@ -11,17 +30,16 @@ app.post("/mailUserCredentialsUrl", function(req, res){
     var email = req.body.email;
         
     var mail = {
-        from: "noreply@infraguard.io",
+        from: "infraguardmail@gmail.com",
         to: email,
         subject: "InfraGuard Console Credentials",
         html: "Welcome to Infraguard.Please find your credentials below and keep it safe.<br><br>InfraGuard Console Credentials : <br><br> URL : "+url+"<br> Username : "+email+"<br> Password :  "+password+" <br><br>  Thanks <br> Infraguard Team"
     }
     var mailTransporter = nodemailer.createTransport({
-        host: "email-smtp.us-east-1.amazonaws.com",
-        port:465,
+        service: 'gmail',
         auth: {
-            user: "AKIAJF5TWSLFHRDRLAFQ",
-            pass: "AiZuYJqpWHHv1baeYIGV6GSqDcGNUvVf6dwpSCiVr4sA"
+            user: 'infraguardmail@gmail.com',
+            pass: 'Infr@Gu@rd'
         }
     });
 
@@ -45,7 +63,7 @@ app.post("/mailMFAResetCredentialsUrl", function(req, res){
     var email = req.body.email;
     
     var mail = {
-        from: "noreply@infraguard.io",
+        from: "infraguardmail@gmail.com",
         to: email,
         subject: "InfraGuard MFA Credentials",
         html : "<p>Hi,</p><br><p>Your request to reset MFA Authentication token has been processed.Below is your one-time use backup password.</p><br><br>"+
@@ -58,11 +76,10 @@ app.post("/mailMFAResetCredentialsUrl", function(req, res){
         }]
     }
     var mailTransporter = nodemailer.createTransport({
-        host: "email-smtp.us-east-1.amazonaws.com",
-        port:465,
+        service: 'gmail',
         auth: {
-            user: "AKIAJF5TWSLFHRDRLAFQ",
-            pass: "AiZuYJqpWHHv1baeYIGV6GSqDcGNUvVf6dwpSCiVr4sA"
+            user: 'infraguardmail@gmail.com',
+            pass: 'Infr@Gu@rd'
         }
     });
 
@@ -84,17 +101,16 @@ app.post("/pwdResetCredentialsUrl", function(req, res){
     var email = req.body.email;
         
     var mail = {
-        from: "noreply@infraguard.io",
+        from: "infraguardmail@gmail.com",
         to: email,
         subject: "InfraGuard Password Reset",
         html: "<p>Hi,</p><br><p>Below is your password reset link. The will expire in 24 hrs. </p><br><br> <div><a href='"+psswdResetUrl+"'> Password Reset Link </a></div><br><br><p>  Thanks</p></br><p> Infraguard Team</p>"
     }
     var mailTransporter = nodemailer.createTransport({
-        host: "email-smtp.us-east-1.amazonaws.com",
-        port:465,
+        service: 'gmail',
         auth: {
-            user: "AKIAJF5TWSLFHRDRLAFQ",
-            pass: "AiZuYJqpWHHv1baeYIGV6GSqDcGNUvVf6dwpSCiVr4sA"
+            user: 'infraguardmail@gmail.com',
+            pass: 'Infr@Gu@rd'
         }
     });
 
@@ -129,17 +145,16 @@ app.post("/mailUpdatedKey", function(req, res){
     }
 
     var mail = {
-        from: "noreply@infraguard.io",
+        from: "infraguardmail@gmail.com",
         to: email,
         subject: mailHeader,
         html: mssg+"<br> Keep it safe.<br><br> ServerIP : "+serverIP+" <br><br> Your private key for SSH Login : <br><br> "+privateKey+"<br><br>  Thanks <br> Infraguard Team"
     }
     var mailTransporter = nodemailer.createTransport({
-        host: "email-smtp.us-east-1.amazonaws.com",
-        port:465,
+        service: 'gmail',
         auth: {
-            user: "AKIAJF5TWSLFHRDRLAFQ",
-            pass: "AiZuYJqpWHHv1baeYIGV6GSqDcGNUvVf6dwpSCiVr4sA"
+            user: 'infraguardmail@gmail.com',
+            pass: 'Infr@Gu@rd'
         }
     });
 
@@ -163,17 +178,17 @@ app.get("/changePrivilegeEmail", function(req, res){
     var password = req.query.password;
 
     var mail = {
-        from: "noreply@infraguard.io",
+        from: "infraguardmail@gmail.com",
         to: email,
         subject: "Server root Credentials",
         html: "Welcome to Infraguard.Below is your password for server sudo access, keep it safe.<br><br> ServerIp : "+serverIp+"<br> Password :  "+password+" <br><br> Thanks <br> Infraguard Team"
     }
+    
     var mailTransporter = nodemailer.createTransport({
-        host: "email-smtp.us-east-1.amazonaws.com",
-        port:465,
+        service: 'gmail',
         auth: {
-            user: "AKIAJF5TWSLFHRDRLAFQ",
-            pass: "AiZuYJqpWHHv1baeYIGV6GSqDcGNUvVf6dwpSCiVr4sA"
+            user: 'infraguardmail@gmail.com',
+            pass: 'Infr@Gu@rd'
         }
     });
 
